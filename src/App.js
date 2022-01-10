@@ -8,12 +8,14 @@ import HonorCalculator from "./components/HonorCalculator";
 import SparkCalculator from "./components/SparkCalculator";
 import ArcarumCalculator from "./components/ArcarumCalculator";
 import Footer from "./components/layout/Footer";
+import DropAnalyze from "./components/DropAnalyze";
 
 const INDEX = -1;
 const BOX = 0;
 const Honor = 1;
 const SPARK = 2;
 const ARCARUM = 3;
+const DROP = 5;
 
 const lightTheme = createMuiTheme({
   palette: {
@@ -46,6 +48,7 @@ function App(props) {
   }, [currentTheme]);
 
   const onToolSelected = (e, index) => {
+    console.log('点击的index为：', index)
     setCurrentTool(index);
   };
 
@@ -79,7 +82,8 @@ function App(props) {
               (currentTool === BOX && <BoxCalculator />) ||
               (currentTool === Honor && <HonorCalculator />) ||
               (currentTool === SPARK && <SparkCalculator />) ||
-              (currentTool === ARCARUM && <ArcarumCalculator />)}
+              (currentTool === ARCARUM && <ArcarumCalculator />) ||
+              (currentTool === DROP && <DropAnalyze />)}
           </Grid>
         </Grid>
         <Footer />
