@@ -10,6 +10,7 @@ import coronationRingImg from '../../assets/item/coronationRing.jpg';
 import intricacyRingImg from '../../assets/item/intricacyRing.jpg';
 import lineageRingImg from '../../assets/item/lineageRing.jpg';
 import goldBrickImg from '../../assets/item/goldBrick.jpg';
+import {AddBox, IndeterminateCheckBox} from "@material-ui/icons";
 
 const PROTO_BAHAMUT = 0; // 大巴
 const AKASHA = 1; // akx
@@ -37,6 +38,9 @@ const useStyles = makeStyles(theme => ({
         margin: "auto",
         maxWidth: "25%",
         maxHeight: 86.776
+    },
+    inputText: {
+        width: 60
     }
 }));
 
@@ -110,18 +114,23 @@ export default function DropAnalyze(props) {
                         component="img"
                         image={coronationRingImg}
                         className={classes.image}
+                        onClick={event => {
+                            setCoronationRing(coronationRing + 1)
+                        }}
                     />
                     <CardContent>
                         <Grid container spacing={1} direction="row">
                             <Grid item sx={4}>
-                                <IconButton aria-label="delete">
-                                    <DeleteIcon />
+                                <IconButton aria-label="增加">
+                                    <AddBox onClick={event => {
+                                        setCoronationRing(coronationRing + 1)
+                                    }}/>
                                 </IconButton>
                             </Grid>
-                            <Grid item sx={4}>
+                            <Grid item sx={3}>
                                 <TextField
+                                    className={classes.inputText}
                                     name="coronationRing"
-                                    helperText="普通戒指"
                                     value={coronationRing}
                                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                                     onChange={e => {
@@ -129,9 +138,12 @@ export default function DropAnalyze(props) {
                                     }}
                                 />
                             </Grid>
-                            <Grid item sx={4}>
-                                <IconButton aria-label="delete">
-                                    <DeleteIcon />
+                            <Grid item sx={3}>
+                                <IconButton aria-label="减少">
+                                    <IndeterminateCheckBox onClick={event => {
+                                        if (coronationRing > 0)
+                                            setCoronationRing(coronationRing - 1)
+                                    }}/>
                                 </IconButton>
                             </Grid>
                         </Grid>
